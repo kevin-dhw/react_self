@@ -1,12 +1,14 @@
-import React from "react";
-import Layout from "../practice/layout";
+import React, { useState } from "react";
+import TodoList from "../practice/todoList";
 
 const Test: React.FC = () => {
+  const [curNum, setCurNum] = useState<number>(0);
+  function changeCurNum(num: number) {
+    setCurNum(num);
+  }
   return (
     <>
-      <br />
-      test
-      <Layout />
+      <TodoList curNum={curNum} changeCurNum={changeCurNum} />
     </>
   );
 };
