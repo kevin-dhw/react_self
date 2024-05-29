@@ -10,7 +10,6 @@ export interface TodoListProps {
 const TodoList = (props: TodoListProps) => {
   return (
     <>
-      {/* 123 */}
       <TopContent></TopContent>
       <div className=" flex">
         <LeftContent {...props} />
