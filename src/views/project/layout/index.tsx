@@ -1,60 +1,33 @@
-import React from "react";
-import LongTask from "./components/longTask";
+import React, { CSSProperties } from "react";
 import BottomContent from "./components/bottomContent";
-
-const obj = [
-  {
-    title: "哈哈哈",
-    titleColor: "blue",
-    content: "号都i哦萨迪克",
-  },
-  {
-    title: "哈",
-    titleColor: "blue",
-    content: "号都i哦萨迪克",
-  },
-  {
-    title: "哈哈",
-    content: "号都i哦克",
-  },
-  {
-    title: "哈哈哈",
-    content: "号都i哦萨迪克哦萨迪克",
-  },
-];
-const obj2 = [
-  {
-    title: "哈",
-    content: "号都i哦",
-  },
-  {
-    title: "哈还哦",
-    content: "号都i哦萨",
-  },
-  {
-    title: "哈哈",
-    titleColor: "pink",
-    content: "号都i哦",
-  },
-  {
-    title: "哈哈哈",
-    titleColor: "red",
-    content: "号都i哦萨迪",
-  },
-];
+import LongTask from "./components/longTask";
+import TopTittle from "./components/topTittle";
+import { LongTaskDatasType } from "./type";
 
 interface LayoutType {
   renderBottom?: () => React.ReactNode;
+  longTaskDatas: LongTaskDatasType[];
+  titleContent?: () => React.ReactNode;
+  style?: CSSProperties;
 }
 const Layout: React.FC<LayoutType> = (props) => {
-  const { renderBottom } = props;
+  const { renderBottom, longTaskDatas, titleContent } = props;
+
   return (
     <>
       {/* 阴影，渐变用tailwind不会写 */}
       <div className=" border-2 rounded-xl">
+        <TopTittle titleContent={titleContent} />
         <div>
-          <LongTask longTaskData={obj} />
-          <LongTask longTaskData={obj2} />
+          {longTaskDatas.length &&
+            longTaskDatas.map((item, index) => {
+              return (
+                <LongTask
+                  key={index}
+                  longTaskData={item.longTaskData}
+                ></LongTask>
+              );
+            })}
         </div>
         <BottomContent>{renderBottom?.()}</BottomContent>
       </div>

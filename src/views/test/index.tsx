@@ -1,88 +1,47 @@
-import React from "react";
-import Layout from "../project/layout";
-import { Button } from "antd";
+import React, { useEffect, useState } from "react";
+import MainContext from "../project/mainContainer";
+import { TabsType } from "../project/mainContainer/type";
+import { leftTabContext } from "../project/mainContainer/contenxt/leftTabContext";
 
-const longTaskDatas = [
+const outTabs: TabsType<number>[] = [
   {
-    data: [
-      {
-        title: "哈哈哈",
-        titleColor: "blue",
-        content: "号都i哦萨迪克",
-      },
-      {
-        title: "哈",
-        titleColor: "blue",
-        content: "号都i哦萨迪克",
-      },
-      {
-        title: "哈哈",
-        content: "号都i哦克",
-      },
-      {
-        title: "哈哈哈",
-        content: "号都i哦萨迪克哦萨迪克",
-      },
-    ],
+    tab: "待办",
+    value: 1,
   },
   {
-    data: [
-      {
-        title: "哈",
-        content: "号都i哦",
-      },
-      {
-        title: "哈还哦",
-        content: "号都i哦萨",
-      },
-      {
-        title: "哈哈",
-        titleColor: "pink",
-        content: "号都i哦",
-      },
-      {
-        title: "哈哈哈",
-        titleColor: "red",
-        content: "号都i哦萨迪",
-      },
-    ],
+    tab: "进行中",
+    value: 2,
+  },
+  {
+    tab: "已完成",
+    value: 3,
   },
 ];
-const btns = [
-  {
-    content: "删除",
-  },
-  {
-    content: "添加",
-  },
-  {
-    content: "编辑",
-  },
-];
-
 const Test: React.FC = () => {
-  const changeContextNum = () => {
-    console.log(111);
+  const [item, setItem] = useState<TabsType<number>>();
+
+  const [tabs] = useState(outTabs);
+  const getTabItem = (item: TabsType<number>) => {
+    setItem(item);
   };
-  function handleBtn(type: string): void {
-    console.log(type);
-  }
+
+  useEffect(() => {
+    console.log(item, "item改变");
+  }, [item]);
+
+  const [searchValue, setSearchValue] = useState<string>("");
+  const getSearchValue = (value: string) => {
+    setSearchValue(value);
+  };
+  useEffect(() => {
+    console.log(searchValue, "searchValue改变");
+  }, [searchValue]);
+
   return (
     <>
-      <button onClick={() => changeContextNum()}>改变</button>
-      <Layout
-        renderBottom={() => {
-          return btns.map((item) => {
-            return (
-              <div key={item.content}>
-                <Button onClick={() => handleBtn(item.content)}>
-                  {item.content}
-                </Button>
-              </div>
-            );
-          });
-        }}
-      ></Layout>
+      <leftTabContext.Provider value={{ tabs, getTabItem, getSearchValue }}>
+        <MainContext></MainContext>
+      </leftTabContext.Provider>
     </>
   );
 };

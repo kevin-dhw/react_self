@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 
-interface LongTaskItem {
+export interface LongTaskItem {
   title: string;
   content: string;
   titleColor?: string;
@@ -11,8 +11,6 @@ export interface LongTaskProps {
 }
 
 const LongTask: React.FC<LongTaskProps> = (props) => {
-  console.log(props, "1234");
-
   return (
     <>
       <div className=" flex ml-3">
