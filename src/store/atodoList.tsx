@@ -7,8 +7,10 @@ interface LfetItemType {
 }
 export interface LeftListTYpe {
   leftList: LfetItemType[];
+  activeNum: number;
+  changeNum: (num: number) => void;
 }
-export const useTodoListStore = create<LeftListTYpe>(() => ({
+export const useTodoListStore = create<LeftListTYpe>((set) => ({
   leftList: [
     {
       id: 1,
@@ -26,4 +28,6 @@ export const useTodoListStore = create<LeftListTYpe>(() => ({
       cur: 2,
     },
   ],
+  activeNum: 0,
+  changeNum: (num) => set({ activeNum: num }),
 }));
