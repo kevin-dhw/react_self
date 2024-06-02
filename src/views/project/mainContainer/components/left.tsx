@@ -1,11 +1,15 @@
+import React from "react";
 import LeftTab from "./leftTab";
 import LeftContent from "./leftContent";
+import { MainContextProps } from "..";
 
-const Left = () => {
+export interface LeftProps extends MainContextProps {}
+
+const Left: React.FC<LeftProps> = (props) => {
   return (
     <>
-      <LeftTab />
-      <LeftContent />
+      <LeftTab {...props} />
+      <LeftContent {...props} />
     </>
   );
 };

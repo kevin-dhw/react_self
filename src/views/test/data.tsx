@@ -8,7 +8,7 @@ interface SubInfoType {
   startTime: string;
 }
 
-interface ListDataItemType {
+export interface ListDataItemType {
   title: string;
   mainInfo: MainInfoType[];
   subInfo: SubInfoType[];
