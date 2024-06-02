@@ -1,14 +1,15 @@
-import React, { useContext, useState } from "react";
-import { leftTabContext } from "../contenxt/leftTabContext";
-import { useLeftStore } from "../../../../store/left";
+import React, { useState } from "react";
 import { TabsType } from "../type";
 import { Input } from "antd";
+import { LeftProps } from "./left";
+import classNames from "classnames";
+interface LeftTabProps
+  extends Pick<LeftProps, "tabs" | "getTabItem" | "getSearchValue"> {}
 
-const LeftTab: React.FC = () => {
-  const { tabs, getTabItem, getSearchValue } = useContext(leftTabContext);
-  const { changeItem } = useLeftStore();
+const LeftTab: React.FC<LeftTabProps> = (props) => {
+  const { tabs, getTabItem, getSearchValue } = props;
+  // const [num, setNum] = useState<number>(0);
   const handleTab = (item: Record<string, any>) => {
-    changeItem(item);
     getTabItem?.(item as TabsType<number>);
   };
 
@@ -17,16 +18,21 @@ const LeftTab: React.FC = () => {
     setValue(e.target.value);
     getSearchValue?.(e.target.value);
   };
+
   return (
     <>
       <div className=" flex border-2 p-3 rounded-lg">
         {tabs?.map((item) => {
           return (
-            <div onClick={() => handleTab(item)} className=" mr-8">
+            <div
+              onClick={() => handleTab(item)}
+              className={classNames(" mr-8")}
+            >
               {item.tab}
             </div>
           );
         })}
+        <div className=" flex-1">编辑</div>
         <div>
           <Input value={value} onChange={(e) => handleInputChange(e)} />
         </div>
