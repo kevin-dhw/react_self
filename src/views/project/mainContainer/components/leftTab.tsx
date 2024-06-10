@@ -8,9 +8,10 @@ interface LeftTabProps
 
 const LeftTab: React.FC<LeftTabProps> = (props) => {
   const { tabs, getTabItem, getSearchValue } = props;
-  // const [num, setNum] = useState<number>(0);
-  const handleTab = (item: Record<string, any>) => {
+  const [num, setNum] = useState<number>(0);
+  const handleTab = (item: Record<string, any>, index: number) => {
     getTabItem?.(item as TabsType<number>);
+    setNum(index);
   };
 
   const [value, setValue] = useState<string>("");
@@ -22,17 +23,20 @@ const LeftTab: React.FC<LeftTabProps> = (props) => {
   return (
     <>
       <div className=" flex border-2 p-3 rounded-lg">
-        {tabs?.map((item) => {
+        {tabs?.map((item, index) => {
           return (
             <div
-              onClick={() => handleTab(item)}
-              className={classNames(" mr-8")}
+              onClick={() => handleTab(item, index)}
+              className={classNames(
+                " mr-8 rounded-md w-20% flex",
+                index === num ? " bg-purple-700  text-white" : ""
+              )}
             >
-              {item.tab}
+              <span className=" m-auto">{item.tab}</span>
             </div>
           );
         })}
-        <div className=" flex-1">编辑</div>
+        <div className=" flex-1">选择</div>
         <div>
           <Input value={value} onChange={(e) => handleInputChange(e)} />
         </div>
