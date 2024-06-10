@@ -3,13 +3,16 @@ import { Button } from "antd";
 import { LeftProps } from "./left";
 
 interface LeftContextProps
-  extends Pick<LeftProps, "listData" | "btnList" | "handleBtn"> {}
+  extends Pick<
+    LeftProps,
+    "listData" | "btnList" | "handleBtn" | "getClickItem"
+  > {}
 
 const LeftContent: React.FC<LeftContextProps> = (props) => {
-  const { listData, btnList, handleBtn } = props;
-  console.log(btnList, "btnList");
+  const { listData, btnList, handleBtn, getClickItem } = props;
+  // 点击整个item
   const clickItem = (item: any) => {
-    console.log(item, 'eachItem');
+    getClickItem?.(item);
   };
   return (
     <div>
@@ -22,7 +25,7 @@ const LeftContent: React.FC<LeftContextProps> = (props) => {
           >
             <div className=" flex">
               <div className=" flex-1">{item.title}</div>
-              <div>状态</div>
+              <div>{item.type}</div>
             </div>
             <div className=" bg-gray-100 rounded-md mt-2 p-2 box-border">
               {item.mainInfo.map((mainItem, mianIndex) => {
@@ -58,7 +61,7 @@ const LeftContent: React.FC<LeftContextProps> = (props) => {
                 {btnList?.map((itemBtn) => {
                   return (
                     <Button
-                      onClickCapture={() => handleBtn?.(itemBtn, item)}
+                      onClickCapture={(e) => handleBtn?.(e, itemBtn, item)}
                       type="text"
                       key={itemBtn.type}
                     >

@@ -11,7 +11,8 @@ export interface MainContextProps {
   tabs?: TabsType<number>[];
   listData?: ListDataItemType[];
   btnList?: BtnListType[];
-  handleBtn?: (itemBtn: BtnListType, item: ListDataItemType) => void;
+  handleBtn?: (e: any, itemBtn: BtnListType, item: ListDataItemType) => void;
+  getClickItem?: (item: ListDataItemType) => void;
 }
 
 const MainContext: React.FC<MainContextProps> = (props) => {
