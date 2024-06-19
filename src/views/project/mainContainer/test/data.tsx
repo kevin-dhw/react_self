@@ -1,4 +1,5 @@
-interface MainInfoType {
+/**
+ * interface MainInfoType {
   No: string;
   place: string;
   group: string;
@@ -144,3 +145,7 @@ export const listData: ListDataItemType[] = [
     content: "今天我干了什么",
   },
 ];
+
+ * 
+ * 
+ */
