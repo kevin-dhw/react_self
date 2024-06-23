@@ -1,10 +1,12 @@
 /**
  * 
- * import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { Button } from "antd";
 // import { useRequest } from "ahooks";
 import MainContext from "../project/mainContainer";
 import { TabsType } from "../project/mainContainer/type";
 import { ListDataItemType, listData } from "./data";
+import { MainContextRef } from "../project/mainContainer";
 
 const outTabs: TabsType<number>[] = [
   {
@@ -36,6 +38,8 @@ const btnList: BtnListType[] = [
   },
 ];
 const Test: React.FC = () => {
+  const mainContextRef = useRef<MainContextRef>(null);
+
   const [tabs] = useState(outTabs);
   // 定义一下列表数据状态 一开始默认是待办的
   const [listDataState, setListDataState] = useState<ListDataItemType[]>(
@@ -93,10 +97,21 @@ const Test: React.FC = () => {
   const getClickItem = (item: ListDataItemType) => {
     console.log(item, "itemitem");
   };
+  const sendOpenMethods = () => {
+    // console.log("sendOpenMethods1234", param);
+    return (data: any) => {
+      console.log("我是外面传进来的函数", data);
+    };
+  };
+  const handleOpen = () => {
+    mainContextRef.current?.open({ name: "jack" }, sendOpenMethods);
+  };
 
   return (
     <>
+      <Button onClick={handleOpen}>打开</Button>
       <MainContext
+        ref={mainContextRef}
         tabs={tabs}
         getTabItem={getTabItem}
         getSearchValue={getSearchValue}
@@ -110,5 +125,6 @@ const Test: React.FC = () => {
 };
 
 export default Test;
+
 
  */

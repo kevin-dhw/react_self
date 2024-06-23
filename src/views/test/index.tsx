@@ -1,11 +1,15 @@
 import React from "react";
-import Canlendar from "../practice/canlendar";
+import Echarts from "../practice/components/echarts";
+
+function getValue<T>(value: T) {
+  console.log(value);
+}
+getValue<number>(1);
 
 const Test: React.FC = () => {
   return (
     <>
-      <div>123</div>
-      <Canlendar />
+      <Echarts />
     </>
   );
 };
