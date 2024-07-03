@@ -40,6 +40,7 @@
     "react-router-dom": "^6.4.1",
     "react-transition-group": "^4.4.5",
     "react-use": "^17.5.0",
+    "test": "^3.3.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

@@ -2,16 +2,16 @@
 
 import React, { useRef } from "react";
 import Layout from "../project/layout";
-import { Button } from "antd";
-import { btns, longTaskDatas } from "./data";
+import { LongTaskDatasBtn } from "./data";
+import { LongTaskItem } from "../project/layout/components/longTask";
 import BottomContext from "../project/layout/context/bottomComtext";
 import { TopContextProvider } from "../project/layout/context/topContext";
 import { layOutRefType } from "../project/layout";
 
 const Test: React.FC = () => {
   const layoutRef = useRef<layOutRefType>(null);
-  function del(id: number) {
-    console.log(id, "执行删除");
+  function del(data: Record<string, any>) {
+    console.log(data, "执行删除");
   }
   function add(data: Record<string, any>) {
     console.log(data, "执行编辑");
@@ -19,13 +19,13 @@ const Test: React.FC = () => {
   function edit(data: Record<string, any>) {
     console.log(data, "执行编辑");
   }
-  function handleBtn(type: string): void {
-    if (type === "删除") {
-      del(1);
-    } else if (type === "添加") {
-      add({ name: "jack", age: 18 });
-    } else if (type === "编辑") {
-      edit({ name: "jack", age: 18 });
+  function handleBtn(type: string, item: LongTaskItem[]): void {
+    if (type === "del") {
+      del(item);
+    } else if (type === "add") {
+      add(item);
+    } else if (type === "edit") {
+      edit(item);
     }
   }
 
@@ -33,15 +33,8 @@ const Test: React.FC = () => {
     console.log("点击tittle");
   }
 
-  const handleOpen = () => {
-    console.log(11111);
-    layoutRef.current?.open({ name: "jack" });
-  };
-  // function getDetailData(item: LongTaskItem[]) {
-  //   setDetailData(item);
-  //   console.log(item);
-  // }
   const bottomData = { name: "jack", age: 20 };
+
   return (
     <>
       <TopContextProvider
@@ -51,11 +44,11 @@ const Test: React.FC = () => {
         }}
       >
         <BottomContext.Provider value={{ bottomData }}>
-          <button onClick={handleOpen}>执行打开</button>
           <Layout
             ref={layoutRef}
             style={{ marginTop: "20px", backgroundColor: "pink" }}
-            longTaskDatas={longTaskDatas}
+            longTaskDatas={LongTaskDatasBtn}
+            handleBtn={handleBtn}
             titleContent={() => {
               return (
                 <div onClick={() => handleTittle()}>
@@ -63,17 +56,6 @@ const Test: React.FC = () => {
                   <br />
                 </div>
               );
-            }}
-            renderBottom={() => {
-              return btns.map((item) => {
-                return (
-                  <div key={item.content}>
-                    <Button onClick={() => handleBtn(item.content)}>
-                      {item.content}
-                    </Button>
-                  </div>
-                );
-              });
             }}
           ></Layout>
         </BottomContext.Provider>
