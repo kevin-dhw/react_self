@@ -1,0 +1,8 @@
+.item-fold {
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(230, 230, 230);
+    margin: 12px 0;
+  }
+}

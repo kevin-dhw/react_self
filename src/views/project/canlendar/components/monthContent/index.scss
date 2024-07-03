@@ -1,0 +1,14 @@
+.month-content {
+  margin-left: 20px;
+  &-item {
+    width: 200px;
+    height: 60px;
+    border: 1px solid rgb(216, 216, 216);
+    margin: 22px;
+    border-radius: 10px;
+    &-title {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

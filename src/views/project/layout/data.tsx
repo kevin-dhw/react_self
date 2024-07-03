@@ -1,20 +1,38 @@
 /*
-import { LongTaskDatasType } from "../project/layout/type";
+
+import { LongTaskDatasBtnProps } from "../project/layout/type";
 
 export const btns = [
   {
     content: "删除",
+    type: "del",
   },
   {
     content: "添加",
+    type: "add",
   },
   {
     content: "编辑",
+    type: "edit",
   },
 ];
 
-export const longTaskDatas: LongTaskDatasType[] = [
+export const LongTaskDatasBtn: LongTaskDatasBtnProps[] = [
   {
+    btns: [
+      {
+        content: "删除",
+        type: "del",
+      },
+      {
+        content: "添加",
+        type: "add",
+      },
+      {
+        content: "编辑",
+        type: "edit",
+      },
+    ],
     longTaskData: [
       {
         title: "哈哈哈",
@@ -32,11 +50,21 @@ export const longTaskDatas: LongTaskDatasType[] = [
       },
       {
         title: "哈哈哈",
-        content: "号都i哦萨",
+        content: "号都i哦萨迪克哦萨迪克",
       },
     ],
   },
   {
+    btns: [
+      {
+        content: "删除",
+        type: "del",
+      },
+      {
+        content: "编辑",
+        type: "edit",
+      },
+    ],
     longTaskData: [
       {
         title: "哈",
@@ -59,6 +87,20 @@ export const longTaskDatas: LongTaskDatasType[] = [
     ],
   },
   {
+    btns: [
+      {
+        content: "删除",
+        type: "del",
+      },
+      {
+        content: "添加",
+        type: "add",
+      },
+      {
+        content: "编辑",
+        type: "edit",
+      },
+    ],
     longTaskData: [
       {
         title: "哈",
@@ -103,6 +145,5 @@ export const longTaskDatas: LongTaskDatasType[] = [
     ],
   },
 ];
-
 
 */
