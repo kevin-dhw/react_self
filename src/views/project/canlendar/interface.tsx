@@ -3,4 +3,6 @@ export interface WeekDataType {
   startDate?: string;
   subEndDate?: string;
   week?: string;
+  isCurWeek?: boolean;
+  year?: string;
 }

@@ -11,7 +11,7 @@ const TopTittle: React.FC<TopTittleProps> = (props) => {
     <>
       <div className=" flex mx-2 mt-4">
         <div className=" flex-1">标题12</div>
-        <div>{titleContent && titleContent()}</div>
+        <div>{titleContent?.()}</div>
       </div>
       <div>
         {topData?.title}
