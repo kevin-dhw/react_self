@@ -26,6 +26,7 @@
     "click-to-react-component": "^1.1.0",
     "cors": "^2.8.5",
     "dayjs": "^1.11.10",
+    "duhw-ui": "^0.0.2",
     "express": "^4.19.2",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
@@ -40,6 +41,7 @@
     "react-router-dom": "^6.4.1",
     "react-transition-group": "^4.4.5",
     "react-use": "^17.5.0",
+    "styled-components": "^6.1.11",
     "test": "^3.3.0",
     "zustand": "^4.5.2"
   },

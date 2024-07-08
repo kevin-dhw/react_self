@@ -1,68 +1,27 @@
-import React, { useState } from "react";
-import SelectPop, { DataItemType } from "../project/selectPop";
-import { tabList, rightData, leftData } from "./data";
+import React from "react";
+import { Tab, Search, TabTaiWind } from "duhw-ui";
+// import TabTaiWind from "../TabTaiwind";
 
 const Test: React.FC = () => {
-  const [curRightData, setCurRightData] = useState(rightData);
-  const [curLeftData, setCurLeftData] = useState(leftData);
-
+  const tabsData = [
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+  ];
   return (
     <>
-      <SelectPop
-        getCurRightItem={(item: DataItemType, index: number) => {
-          setCurRightData((leftData) => {
-            const result = [...leftData];
-            if (index === -1) {
-              result.forEach((ele, idx) => {
-                if (ele.name === item.name) {
-                  result[idx] = item;
-                }
-              });
-            } else {
-              result[index] = item;
-            }
-            return result;
-          });
+      <Tab tabsData={tabsData}></Tab>
+      <br />
+      <Search
+        getValue={(val) => {
+          console.log(val);
         }}
-        getCurLeftItem={(item: DataItemType, index: number) => {
-          setCurLeftData((rightData) => {
-            const result = [...rightData];
-            if (index === -1) {
-              result.forEach((ele, idx) => {
-                if (ele.name === item.name) {
-                  result[idx] = item;
-                }
-              });
-            } else {
-              result[index] = item;
-            }
-            return result;
-          });
-        }}
-        tabList={tabList}
-        leftData={curLeftData}
-        rightData={curRightData}
-      />
+      ></Search>
+      <br />
+      {/* <TabTaiWind tabsData={tabsData} /> */}
+      <TabTaiWind tabsData={tabsData}></TabTaiWind>
     </>
   );
 };
-// if (index === -1) {
-//   setCurLeftData((leftData) => {
-//     const result = [...leftData];
-//     // const idx = result.findIndex((ele) => ele.name === item.name);
-//     result.forEach((ele) => {
-//       if (ele.name === item.name) {
-//         ele = item;
-//       }
-//     });
-//     return result;
-//   });
-// } else {
-//   setCurLeftData((leftData) => {
-//     const result = [...leftData];
-//     result[index] = item;
-//     return result;
-//   });
-// }
 
 export default Test;
