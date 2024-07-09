@@ -1,6 +1,5 @@
 import React from "react";
 import { Tab, Search, TabTaiWind } from "duhw-ui";
-// import TabTaiWind from "../TabTaiwind";
 
 const Test: React.FC = () => {
   const tabsData = [
@@ -18,7 +17,6 @@ const Test: React.FC = () => {
         }}
       ></Search>
       <br />
-      {/* <TabTaiWind tabsData={tabsData} /> */}
       <TabTaiWind tabsData={tabsData}></TabTaiWind>
     </>
   );
