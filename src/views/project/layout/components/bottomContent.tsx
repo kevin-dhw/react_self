@@ -9,8 +9,8 @@ const BottomContent: React.FC<BottomContentType> = (props) => {
   return (
     <div className=" border-t-2 py-3">
       <div className=" flex justify-around">{children}</div>
-      {bottomData ? bottomData.name : ""}
-      {bottomData ? bottomData.age : ""}
+      {bottomData?.age ?? ""}
+      {bottomData?.age ?? ""}
     </div>
   );
 };

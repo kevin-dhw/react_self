@@ -11,7 +11,7 @@ const TopContext = createContext<TopContextType>({
     title: "我是原始标题",
     subTitle: "我是原始副标题",
   },
-});
+} as TopContextType);
 
 interface TopContextProviderType extends PropsWithChildren<TopContextType> {}
 

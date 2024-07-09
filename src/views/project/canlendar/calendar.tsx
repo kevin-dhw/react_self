@@ -3,12 +3,17 @@ import Header from "./components/header";
 import MonthContent from "./components/monthContent";
 import dayjs from "dayjs";
 import { getweekData } from "./utils";
+import { WeekDataType } from "./interface";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import dayOfYear from "dayjs/plugin/dayOfYear";
 dayjs.extend(weekOfYear);
 dayjs.extend(dayOfYear);
 
-const Canlendar: React.FC = () => {
+export interface CanlendarProps {
+  getCurWeekData?: (item: WeekDataType) => void;
+}
+
+const Canlendar: React.FC<CanlendarProps> = (props) => {
   const [curYear, setCurYear] = useState<number>();
   const weekData = getweekData(curYear);
 
@@ -19,7 +24,7 @@ const Canlendar: React.FC = () => {
           setCurYear(curYear);
         }}
       ></Header>
-      <MonthContent weekData={weekData}></MonthContent>
+      <MonthContent {...props} weekData={weekData}></MonthContent>
     </div>
   );
 };
