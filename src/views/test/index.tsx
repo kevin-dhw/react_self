@@ -1,23 +1,18 @@
 import React from "react";
-import { Tab, Search, TabTaiWind } from "duhw-ui";
+
+import Canlendar, { WeekDataType } from "../project/canlendar";
+import dayjs from "dayjs";
 
 const Test: React.FC = () => {
-  const tabsData = [
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-  ];
+  console.log(dayjs().date(), dayjs().month() + 1, dayjs(), "1234");
+
   return (
     <>
-      <Tab tabsData={tabsData}></Tab>
-      <br />
-      <Search
-        getValue={(val) => {
-          console.log(val);
+      <Canlendar
+        getCurWeekData={(item: WeekDataType) => {
+          console.log(item);
         }}
-      ></Search>
-      <br />
-      <TabTaiWind tabsData={tabsData}></TabTaiWind>
+      />
     </>
   );
 };
