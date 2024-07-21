@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import ReactIntl from "../practice/ReactIntl";
 
@@ -10,3 +11,5 @@ const Test: React.FC = () => {
 };
 
 export default Test;
+
+*/
