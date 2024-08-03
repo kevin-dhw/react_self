@@ -17,6 +17,8 @@ const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
+const val = {};
+console.log(!Object.keys(val).length, "val11");
 
 const ReactIntl: React.FC = () => {
   const intl = useIntl();

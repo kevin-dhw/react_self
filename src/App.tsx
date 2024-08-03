@@ -1,23 +1,24 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 import TestTable from "./views/test/testEditable";
 import Test from "./views/test";
-import { useState } from "react";
-import { Button } from "antd";
-import "./App.css";
-import { IntlProvider } from "react-intl";
-import { enUS } from "./views/locale/en-US.ts";
-import { zhCN } from "./views/locale/zh-CN.ts";
+import ConnectDetail from "./views/project/connect/detail";
+// import { useState } from "react";
+// import { Button } from "antd";
+// import "./App.css";
+// import { IntlProvider } from "react-intl";
+// import { enUS } from "./views/locale/en-US.ts";
+// import { zhCN } from "./views/locale/zh-CN.ts";
 
-const messages: Record<string, any> = {
-  "en-US": enUS,
-  "zh-CN": zhCN,
-};
+// const messages: Record<string, any> = {
+//   "en-US": enUS,
+//   "zh-CN": zhCN,
+// };
 
 function App() {
-  const [locale, setLocale] = useState("zh-CN");
+  // const [locale, setLocale] = useState("zh-CN");
   return (
     <>
-      <Button
+      {/* <Button
         onClick={() =>
           setLocale((val) => {
             let newVal = "";
@@ -31,16 +32,17 @@ function App() {
         }
       >
         切换
-      </Button>
-      <IntlProvider messages={messages[locale]} locale={locale}>
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<Test />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/testTable" element={<TestTable />} />
-          </Routes>
-        </HashRouter>
-      </IntlProvider>
+      </Button> */}
+      {/* <IntlProvider messages={messages[locale]} locale={locale}> */}
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Test />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/testTable" element={<TestTable />} />
+          <Route path="/connectDetail" element={<ConnectDetail />}></Route>
+        </Routes>
+      </HashRouter>
+      {/* </IntlProvider> */}
     </>
   );
 }
