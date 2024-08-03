@@ -1,10 +1,14 @@
 import React from "react";
-import ReactIntl from "../practice/ReactIntl";
+import Select from "../practice/components/select";
+import { selectData } from "./data";
+// const crypto = require("crypto");
 
 const Test: React.FC = () => {
+  // console.log(crypto.randomBytes(18), "111");
+
   return (
     <>
-      <ReactIntl></ReactIntl>
+      <Select selectData={selectData} isRadio={true} />
     </>
   );
 };
