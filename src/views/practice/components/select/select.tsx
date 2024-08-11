@@ -1,31 +1,55 @@
-import React, { useState } from "react";
-import { SelectItemType } from "./interface";
-import RadioSelect from "./components/radioSelect";
+import React, { useRef, useImperativeHandle } from "react";
+import RadioSelect, { RadioSelectRef } from "./components/radioSelect";
+import MultipeSelect, { MultipleSelectRef } from "./components/multipleSelect";
+import type { SelectItemType } from "./interface";
 
-export interface SelectProps {
+export type SelectProps = {
   selectData: SelectItemType[];
-  isRadio: boolean;
+  isRadio?: boolean;
+  getSelectedData?: (item: SelectItemType | SelectItemType[]) => void;
+};
+export interface SelectRef {
+  open: () => void;
 }
 
-const Select: React.FC<SelectProps> = (props) => {
-  const { selectData, isRadio } = props;
-  const [isShowSelectContent, setIsShowSelectContent] = useState(true);
+const InSelect: React.ForwardRefRenderFunction<SelectRef, SelectProps> = (
+  props,
+  ref
+) => {
+  const { selectData, isRadio = true, getSelectedData } = props;
+  const radioSelectRef = useRef<RadioSelectRef>(null);
+  const multipleSelectRef = useRef<MultipleSelectRef>(null);
 
-  //   const handleCancel = () => {
-  //     setIsShowSelectContent(false);
-  //   };
+  const open = () => {
+    if (isRadio) {
+      radioSelectRef.current?.handleShow();
+    } else {
+      multipleSelectRef.current?.handleShow();
+    }
+  };
 
-  //   const handleVisible = () => {
-  //     setIsShowSelectContent(true);
-  //   };
+  useImperativeHandle(ref, () => ({ open }));
 
-  //   const handleComfirm = () => {
-  //     console.log("确认");
-  //     setIsShowSelectContent(false);
-  //   };
-  if (isShowSelectContent && isRadio) {
-    return <RadioSelect></RadioSelect>;
+  if (isRadio) {
+    return (
+      <div>
+        <RadioSelect
+          ref={radioSelectRef}
+          selectData={selectData}
+          getSelectedData={getSelectedData}
+        ></RadioSelect>
+      </div>
+    );
   }
-  return <div>多选</div>;
+  return (
+    <div>
+      <MultipeSelect
+        ref={multipleSelectRef}
+        selectData={selectData}
+        getSelectedData={getSelectedData}
+      ></MultipeSelect>
+    </div>
+  );
 };
+const Select = React.forwardRef(InSelect);
 export default Select;
