@@ -32,6 +32,7 @@ export default {
       },
       flex: {
         2: 2,
+        3: 3,
       },
       lineHeight: {
         100: "100px",
