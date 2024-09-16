@@ -1,26 +1,31 @@
-import React from "react";
-import { Select as DuSelect } from "duhw-ui";
+import React, { useRef } from "react";
+import { Button } from "antd";
+import { Select as DuSelect, SelectItemType, SelectRef } from "duhw-ui";
 import { selectData } from "./data";
 
-/*
- <Select
-  ref={selectRef}
-  getSelectedData={(item: SelectItemType | SelectItemType[]) => {
-    console.log(item, "item");
-  }}
-  isRadio={false}
-  selectData={selectData}
-/>
-*/
-
-const Select: React.FC = () => {
+const Test: React.FC = () => {
+  const selectRef = useRef<SelectRef>(null);
   return (
-    <div>
-      select222
+    <div className=" h-[100vh]">
+      selecttest
       <br />
-      <DuSelect selectData={selectData}></DuSelect>
+      <Button
+        onClick={() => {
+          selectRef.current?.open();
+        }}
+      >
+        出现
+      </Button>
+      <DuSelect
+        selectData={selectData}
+        ref={selectRef}
+        getSelectedData={(item: SelectItemType | SelectItemType[]) => {
+          console.log(item, "item");
+        }}
+        isRadio={false}
+      ></DuSelect>
     </div>
   );
 };
 
-export default Select;
+export default Test;
