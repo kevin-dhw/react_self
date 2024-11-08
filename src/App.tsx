@@ -1,7 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import TestTable from "./views/test/testEditable";
 import Test from "./views/test";
-import ConnectDetail from "./views/project/connect/detail";
 import Detail from "./views/test/prictice/time/components/detail";
 // import { useState } from "react";
 // import { Button } from "antd";
@@ -19,28 +17,10 @@ function App() {
   // const [locale, setLocale] = useState("zh-CN");
   return (
     <>
-      {/* <Button
-        onClick={() =>
-          setLocale((val) => {
-            let newVal = "";
-            if (val === "zh-CN") {
-              newVal = "en-US";
-            } else {
-              newVal = "zh-CN";
-            }
-            return newVal;
-          })
-        }
-      >
-        切换
-      </Button> */}
-      {/* <IntlProvider messages={messages[locale]} locale={locale}> */}
       <HashRouter>
         <Routes>
           <Route path="/" element={<Test />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/testTable" element={<TestTable />} />
-          <Route path="/connectDetail" element={<ConnectDetail />}></Route>
           <Route path="/detail" element={<Detail />}></Route>
         </Routes>
       </HashRouter>

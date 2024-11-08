@@ -88,7 +88,7 @@ const InnerExpand: React.ForwardRefRenderFunction<ExpandRef, ExpandProps> = (
                     onClick={() => handleSelect(item, idx)}
                     className={classNames(
                       "expand-content-list-item",
-                      valArr[idx] ? " expand-content-list-item-selected" : ""
+                      valArr[idx] ? "expand-content-list-item-selected" : ""
                     )}
                     key={idx}
                   >
