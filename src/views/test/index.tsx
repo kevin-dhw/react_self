@@ -1,10 +1,10 @@
 import React from "react";
-import ToDoList from "./prictice/todoList";
+import StandardCard from "../app/standardCard";
 
 const Test: React.FC = () => {
   return (
     <div className=" h-[100vh]">
-      <ToDoList></ToDoList>
+      <StandardCard></StandardCard>
     </div>
   );
 };
