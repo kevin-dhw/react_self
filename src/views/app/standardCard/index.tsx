@@ -1,10 +1,12 @@
 import React from "react";
+import Header from "../components/header";
 
 const StandardCard: React.FC = () => {
   return (
     <div>
-      <span></span>
-      StandardCard
+      <Header title="我是标题">
+        <div>11111</div>
+      </Header>
     </div>
   );
 };

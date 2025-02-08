@@ -1,8 +1,12 @@
-import React, { useImperativeHandle, ForwardRefRenderFunction } from "react";
+import React, {
+  useImperativeHandle,
+  ForwardRefRenderFunction,
+  PropsWithChildren,
+} from "react";
 import { Button } from "antd";
 import { ItemType } from "../../interface";
 
-interface SonProps<ageType, itemType> {
+interface SonProps<ageType, itemType> extends PropsWithChildren {
   age: ageType;
   name: string;
   item?: itemType[];
@@ -16,7 +20,7 @@ const InnerSon: ForwardRefRenderFunction<SonRef, SonProps<number, ItemType>> = (
   props,
   ref
 ) => {
-  const { age, name, handleClick } = props;
+  const { age, name, handleClick, children } = props;
   const handleSonFn = () => {
     console.log("handleSonFn");
   };
@@ -37,6 +41,9 @@ const InnerSon: ForwardRefRenderFunction<SonRef, SonProps<number, ItemType>> = (
       >
         测试
       </Button>
+      <br />
+      <br />
+      children: {children && children}
     </div>
   );
 };
