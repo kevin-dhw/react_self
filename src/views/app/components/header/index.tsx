@@ -15,15 +15,15 @@ const Header: React.FC<HeaderProps> = (props) => {
     <div>
       <div
         className={classNames(
-          " h-[40px] bg-red-200 flex items-center",
-          " px-4"
+          " h-[40px] bg-blue-500 flex items-center",
+          " px-4 text-white"
         )}
       >
         <div className=" flex-1">{title}</div>
         <div className=" pr-3">{children}</div>
         <div
           className={classNames(
-            " pl-3",
+            " pl-3 ",
             children && "border-l-2  border-red-700"
           )}
           onClick={handleBack}
