@@ -1,12 +1,10 @@
 import React from "react";
-import StandardCard from "../app/standardCard";
-// import RandomProject from "../project/randomProject/randomProject";
+import Practice from "../project/practice";
 
 const Test: React.FC = () => {
   return (
     <div className=" h-[100vh]">
-      <StandardCard></StandardCard>
-      {/* <RandomProject></RandomProject> */}
+      <Practice />
     </div>
   );
 };
