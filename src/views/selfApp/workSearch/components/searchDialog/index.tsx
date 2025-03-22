@@ -5,6 +5,9 @@ import React, {
   useImperativeHandle,
 } from "react";
 import classNames from "classnames";
+import { searchData } from "../../data";
+import { hanldeData } from "./utils";
+import { cloneDeep } from "lodash";
 
 export interface SearchDialogProps {
   handleConfirm?: (data: Record<string, any>) => void;
@@ -26,28 +29,92 @@ const InnerSearchDialog: ForwardRefRenderFunction<
   SearchDialogProps
 > = (_, ref) => {
   const [isShowDialog, setIsShowDialog] = useState(false);
-  const [getInitData] = useState<GetInitDataType>({} as GetInitDataType);
+  const [getInitData, setGetInitData] = useState<GetInitDataType>(
+    {} as GetInitDataType
+  );
+  const [newData, setNewData] = useState(hanldeData(searchData));
 
-  useEffect(() => {}, [getInitData]);
+  useEffect(() => {
+    console.log(getInitData, "getInitData useEffect");
+  }, [getInitData]);
 
   const open = (
     obj: GetInitDataType["obj"],
     callback: GetInitDataType["callback"]
   ) => {
     getInitData.obj = obj;
-    console.log(getInitData.obj, "getInitData.obj");
+    setDefaulData(obj);
     getInitData.callback = callback;
     setIsShowDialog(true);
+  };
+  // 打开弹出框，要赋值默认的数据
+  const setDefaulData = (obj: GetInitDataType["obj"]) => {
+    setNewData((data) => {
+      data.forEach((item) => {
+        const arr = obj[item.field];
+        arr &&
+          item.list.forEach((ele) => {
+            if (arr.includes(ele.value)) {
+              ele.isChoose = true;
+            }
+          });
+      });
+      return cloneDeep(data);
+    });
   };
   const close = () => {
     setIsShowDialog(false);
   };
   const handleReset = () => {
-    console.log("reset");
+    setGetInitData((data) => {
+      return cloneDeep({
+        ...data,
+        obj: [],
+      });
+    });
+    setNewData((data) => {
+      data.forEach((item) => {
+        item.list.forEach((ele) => {
+          ele.isChoose = false;
+        });
+      });
+      return cloneDeep(data);
+    });
+  };
+  // 处理传出去的数据
+  const postData = () => {
+    const arr: any = [];
+    newData.forEach((item, idx) => {
+      const obj: Record<string, any> = {};
+      obj[item.field] = item.list
+        .filter((ele) => ele.isChoose)
+        .map((item) => item.value);
+      arr[idx] = obj;
+    });
+    return arr;
   };
   const clickConfirm = () => {
-    getInitData.callback({ age: "20" });
+    postData();
+    getInitData.callback(postData());
     setIsShowDialog(false);
+  };
+  // 每个选择的点击事件 点击状态改为选中
+  const handleClickItem = (idx: number, index: number) => {
+    setNewData((data) => {
+      // 单选逻辑
+      if (data[idx].type === "single") {
+        data[idx].list.forEach((item, i2) => {
+          if (i2 === index) {
+            item.isChoose = true;
+          } else {
+            item.isChoose = false;
+          }
+        });
+      } else {
+        data[idx].list[index].isChoose = !data[idx].list[index].isChoose;
+      }
+      return cloneDeep(data);
+    });
   };
 
   useImperativeHandle(ref, () => {
@@ -62,7 +129,12 @@ const InnerSearchDialog: ForwardRefRenderFunction<
             " flex w-full"
           )}
         >
-          <div className=" flex-[2.5] bg-gray-300 opacity-45 "></div>
+          <div
+            onClick={() => {
+              close();
+            }}
+            className=" flex-[2.5] bg-gray-300 opacity-45 "
+          ></div>
           <div className=" h-full bg-white flex-[7.5] flex flex-col">
             {/* this part is title and close icon */}
             <div className=" flex h-[60px] border-b-[1px]">
@@ -79,8 +151,43 @@ const InnerSearchDialog: ForwardRefRenderFunction<
               </div>
             </div>
             {/* main content */}
-            <div className=" flex-1 overflow-auto">
-              <p>这是一段内容，当内容超出容器高度时，会出现滚动条。</p>
+            <div className=" flex-1 overflow-auto ">
+              <div className=" w-full px-3">
+                {newData.map((item, idx) => {
+                  {
+                    /* showType select 类型 */
+                  }
+                  if (item.showType === "select") {
+                    return (
+                      <div key={idx}>
+                        <div className=" py-2 font-bold">{item.title}</div>
+                        <div className=" flex flex-wrap">
+                          {item.list.map((ele, index) => {
+                            return (
+                              <div
+                                onClick={() => handleClickItem(idx, index)}
+                                key={index}
+                              >
+                                <div
+                                  className={classNames(
+                                    " text-sm bg-gray-100 py-2 px-[30px] rounded-xl mr-3 mb-3",
+                                    ele.isChoose ? " bg-blue-300" : ""
+                                  )}
+                                >
+                                  {ele.subTitle}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                    // input类型
+                  } else if (item.showType === "input") {
+                    return <div key={idx}>1111</div>;
+                  }
+                })}
+              </div>
             </div>
             {/* reset and confirm */}
             <div className=" h-[60px] border-t-[1px] flex justify-around items-center">

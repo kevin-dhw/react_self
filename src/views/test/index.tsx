@@ -1,5 +1,5 @@
 import React from "react";
-import StandardCard from "../app/standardCard";
+import StandardCard from "../selfApp/workSearch";
 // import RandomProject from "../project/randomProject/randomProject";
 
 const Test: React.FC = () => {

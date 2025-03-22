@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Header from "./components/header";
 import Search from "./components/search";
 import SearchDialog, { SearchDialogRef } from "./components/searchDialog";
@@ -6,26 +6,39 @@ import SearchDialog, { SearchDialogRef } from "./components/searchDialog";
 
 const WorkSearch: React.FC = () => {
   const searchDialogRef = useRef<SearchDialogRef>(null);
-  const [obj, setObj] = useState({ name: "jack", age: "20" });
+  const [recieveData, setReieveData] = useState<any[]>();
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const params: Record<string, any> = {
+      inputValue,
+    };
+    recieveData?.forEach((item) => {
+      for (const k in item) {
+        params[k] = item[k];
+      }
+    });
+    console.log("接受到了数据", params);
+  }, [recieveData, inputValue]);
 
   return (
     <div>
       <Header
         handleChoose={() => {
-          setObj({
-            name: "jack",
-            age: "30",
-          });
-          setTimeout(() => {
-            searchDialogRef.current?.open(obj, (data) => {
-              console.log(data, "1111");
-            });
-          });
+          searchDialogRef.current?.open(
+            {
+              issue: ["0"],
+              sorce: ["1", "2"],
+            },
+            (data) => {
+              setReieveData(data as any[]);
+            }
+          );
         }}
       ></Header>
       <Search
         handleSearch={(value) => {
-          console.log(value, "value");
+          setInputValue(value);
         }}
       ></Search>
       <SearchDialog ref={searchDialogRef}></SearchDialog>
