@@ -43,21 +43,27 @@ const InnerSearchDialog: ForwardRefRenderFunction<
     callback: GetInitDataType["callback"]
   ) => {
     getInitData.obj = obj;
-    setDefaulData(obj);
+    setDefaulData();
     getInitData.callback = callback;
     setIsShowDialog(true);
   };
   // 打开弹出框，要赋值默认的数据
-  const setDefaulData = (obj: GetInitDataType["obj"]) => {
+  const setDefaulData = () => {
+    console.log(getInitData.obj, "getInitData.obj");
     setNewData((data) => {
       data.forEach((item) => {
-        const arr = obj[item.field];
-        arr &&
-          item.list.forEach((ele) => {
+        const arr = getInitData.obj[item.field];
+        item.list.forEach((ele) => {
+          if (arr && arr.length) {
             if (arr.includes(ele.value)) {
               ele.isChoose = true;
+            } else {
+              ele.isChoose = false;
             }
-          });
+          } else {
+            ele.isChoose = false;
+          }
+        });
       });
       return cloneDeep(data);
     });
@@ -95,11 +101,13 @@ const InnerSearchDialog: ForwardRefRenderFunction<
   };
   const clickConfirm = () => {
     postData();
+    setGetInitData(postData());
     getInitData.callback(postData());
     setIsShowDialog(false);
   };
   // 每个选择的点击事件 点击状态改为选中
   const handleClickItem = (idx: number, index: number) => {
+    console.log(newData, "newData");
     setNewData((data) => {
       // 单选逻辑
       if (data[idx].type === "single") {
@@ -171,7 +179,7 @@ const InnerSearchDialog: ForwardRefRenderFunction<
                                 <div
                                   className={classNames(
                                     " text-sm bg-gray-100 py-2 px-[30px] rounded-xl mr-3 mb-3",
-                                    ele.isChoose ? " bg-blue-300" : ""
+                                    ele.isChoose && " bg-blue-400 text-white"
                                   )}
                                 >
                                   {ele.subTitle}

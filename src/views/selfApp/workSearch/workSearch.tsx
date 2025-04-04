@@ -21,19 +21,30 @@ const WorkSearch: React.FC = () => {
     console.log("接受到了数据", params);
   }, [recieveData, inputValue]);
 
+  const getData = () => {
+    const obj: Record<string, any> = {};
+    recieveData?.forEach((item) => {
+      for (const k in item) {
+        obj[k] = item[k];
+      }
+    });
+    return obj;
+  };
+
   return (
     <div>
       <Header
         handleChoose={() => {
-          searchDialogRef.current?.open(
-            {
-              issue: ["0"],
-              sorce: ["1", "2"],
-            },
-            (data) => {
-              setReieveData(data as any[]);
-            }
-          );
+          const data = recieveData?.length
+            ? getData()
+            : {
+                issue: ["0"],
+                sorce: ["1", "2"],
+              };
+
+          searchDialogRef.current?.open(data, (data) => {
+            setReieveData(data as any[]);
+          });
         }}
       ></Header>
       <Search
