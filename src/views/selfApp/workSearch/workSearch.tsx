@@ -3,6 +3,8 @@ import Header from "./components/header";
 import Search from "./components/search";
 import SearchDialog, { SearchDialogRef } from "./components/searchDialog";
 import SearchTitle from "./components/searchTitle";
+import Tab from "./components/tab";
+import List from "./components/list";
 // import { Button } from "antd";
 
 const WorkSearch: React.FC = () => {
@@ -52,8 +54,10 @@ const WorkSearch: React.FC = () => {
           setInputValue(value);
         }}
       ></Search>
+      <Tab />
       <SearchDialog ref={searchDialogRef}></SearchDialog>
       <SearchTitle></SearchTitle>
+      <List></List>
     </div>
   );
 };
