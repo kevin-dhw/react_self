@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Header from "./components/header";
 import Search from "./components/search";
 import SearchDialog, { SearchDialogRef } from "./components/searchDialog";
+import SearchTitle from "./components/searchTitle";
 // import { Button } from "antd";
 
 const WorkSearch: React.FC = () => {
@@ -18,7 +19,6 @@ const WorkSearch: React.FC = () => {
         params[k] = item[k];
       }
     });
-    console.log("接受到了数据", params);
   }, [recieveData, inputValue]);
 
   const getData = () => {
@@ -53,16 +53,7 @@ const WorkSearch: React.FC = () => {
         }}
       ></Search>
       <SearchDialog ref={searchDialogRef}></SearchDialog>
-      {/* <Button
-        onClick={() => {
-          setObj({
-            name: "jack",
-            age: "30",
-          });
-        }}
-      >
-        改变
-      </Button> */}
+      <SearchTitle></SearchTitle>
     </div>
   );
 };

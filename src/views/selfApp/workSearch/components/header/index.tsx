@@ -14,6 +14,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const handleIcon3 = () => {
     console.log("handleIcon3");
   };
+
   return (
     <div>
       <div
