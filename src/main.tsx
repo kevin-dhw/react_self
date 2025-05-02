@@ -7,7 +7,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <DndProvider backend={HTML5Backend}>
-    <ClickToComponent />
+    <ClickToComponent editor={"cursor"} pathModifier={(path: any) => path} />
     <App />
   </DndProvider>
 );
