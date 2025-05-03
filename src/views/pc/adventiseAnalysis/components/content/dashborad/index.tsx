@@ -1,11 +1,11 @@
 import React from "react";
 
-const WorkSearch: React.FC = () => {
+const Dashborad: React.FC = () => {
   return (
-    <div>
-      <div>111</div>
+    <div className=" p-[20px]">
+      <div></div>
     </div>
   );
 };
 
-export default WorkSearch;
+export default Dashborad;

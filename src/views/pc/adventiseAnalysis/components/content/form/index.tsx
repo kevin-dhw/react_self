@@ -1,11 +1,11 @@
 import React from "react";
 
-const WorkSearch: React.FC = () => {
+const Form: React.FC = () => {
   return (
     <div>
-      <div>111</div>
+      <div>form</div>
     </div>
   );
 };
 
-export default WorkSearch;
+export default Form;
