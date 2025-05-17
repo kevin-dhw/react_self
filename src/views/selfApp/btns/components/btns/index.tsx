@@ -72,7 +72,10 @@ const AllBtns: React.FC<BtnListType> = (props) => {
             return (
               <div
                 key={index}
-                className={classNames(" flex flex-col items-center w-[70px] ")}
+                className={classNames(
+                  " flex flex-col items-center w-[42px] ",
+                  item?.text.length === 4 && "w-[70px]"
+                )}
                 onClick={() => {
                   handleClick(item!.type);
                 }}
