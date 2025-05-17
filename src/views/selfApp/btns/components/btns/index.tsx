@@ -72,7 +72,7 @@ const AllBtns: React.FC<BtnListType> = (props) => {
             return (
               <div
                 key={index}
-                className=" flex flex-col items-center w-[42px] "
+                className={classNames(" flex flex-col items-center w-[42px] ")}
                 onClick={() => {
                   handleClick(item!.type);
                 }}
@@ -83,10 +83,10 @@ const AllBtns: React.FC<BtnListType> = (props) => {
             );
           })}
 
-        {/* 按钮只有 一个或者两个的时候显示 
+        {/* 按钮只有 一个或者两个或者四个以上的时候显示 
           每次在最左边
         */}
-        {btnLength <= 2 && (
+        {(btnLength <= 2 || btnLength >= 4) && (
           <div
             onClick={() => {
               handleClickBtn?.(btns[0].type);
@@ -94,7 +94,7 @@ const AllBtns: React.FC<BtnListType> = (props) => {
             className={classNames(
               " flex-1 basis-1/2 border border-gray-200 rounded-md",
               "flex cursor-pointer",
-              btnLength === 1 && "bg-blue-400 text-white"
+              (btnLength === 1 || btnLength >= 4) && "bg-blue-400 text-white"
             )}
           >
             <div className=" m-auto py-[10px]">{btns[0].text}</div>
@@ -103,7 +103,7 @@ const AllBtns: React.FC<BtnListType> = (props) => {
         {/* 
         按钮 有两个或 三个的时候显示 每次都在最右边
          */}
-        {btnLength >= 2 && (
+        {(btnLength == 2 || btnLength == 3) && (
           <div
             onClick={() => {
               handleClickBtn?.(btns[btns.length - 1].type);
