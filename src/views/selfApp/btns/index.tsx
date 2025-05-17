@@ -13,7 +13,7 @@ const Btns: React.FC = () => {
     },
     {
       type: "confirm",
-      text: "确定",
+      text: "报告登记",
       icon: homeImg,
     },
     {
