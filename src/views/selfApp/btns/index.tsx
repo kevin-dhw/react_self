@@ -26,11 +26,11 @@ const Btns: React.FC = () => {
       text: "发布",
       icon: peopleImg,
     },
-    // {
-    //   type: "complete",
-    //   text: "完成",
-    //   icon: peopleImg,
-    // },
+    {
+      type: "complete",
+      text: "完成",
+      icon: peopleImg,
+    },
   ];
   console.log(btns);
   const handleClickBtn = (text: string) => {
