@@ -2,8 +2,8 @@ import React from "react";
 
 const Dashborad: React.FC = () => {
   return (
-    <div className=" p-[20px]">
-      <div></div>
+    <div className="">
+      <div>111111111</div>
     </div>
   );
 };
