@@ -39,7 +39,7 @@ const Btns: React.FC = () => {
 
   return (
     <div className=" flex flex-col h-full">
-      <div className=" bg-slate-400 flex-1">main</div>
+      <div className=" bg-slate-400 flex-1">main111</div>
       <div className=" gap-4">
         <AllBtns btns={btns} handleClickBtn={handleClickBtn}></AllBtns>
       </div>
