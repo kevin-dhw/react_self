@@ -11,6 +11,7 @@ export interface State {
 
 export interface Action {
   changeTabItem: (idx: number) => void;
+  handleAddTab: (item: TabItemType) => void;
 }
 
 const useTabStore = create<State & Action>((set) => ({
@@ -20,8 +21,12 @@ const useTabStore = create<State & Action>((set) => ({
       isSelected: false,
     },
     {
-      lable: "default account",
+      lable: "account",
       isSelected: true,
+    },
+    {
+      lable: "account2",
+      isSelected: false,
     },
   ],
   changeTabItem: (idx: number) => {
@@ -34,6 +39,17 @@ const useTabStore = create<State & Action>((set) => ({
         }
       });
       return { tab: state.tab };
+    });
+  },
+  handleAddTab: (item: TabItemType) => {
+    return set((state) => {
+      return { tab: [...state.tab, item] };
+    });
+  },
+  handleDelTab: (idx: number) => {
+    return set((state) => {
+      state.tab.splice(idx, 1);
+      return { tab: [...state.tab] };
     });
   },
 }));
