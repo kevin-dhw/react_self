@@ -1,8 +1,5 @@
 import React from "react";
-// import StandardCard from "../selfApp/workSearch";
-// import Btns from "../selfApp/btns";
-// import AdventiseAnalysis from "../pc/adventiseAnalysis";
-import Stock from "../selfApp/stock";
+import Stock from "../stcok";
 
 const Test: React.FC = () => {
   return (
