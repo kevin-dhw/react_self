@@ -3,6 +3,7 @@ import { create } from "zustand";
 export interface TabItemType {
   lable: string;
   isSelected: boolean;
+  isShow: boolean;
 }
 
 export interface State {
@@ -12,6 +13,8 @@ export interface State {
 export interface Action {
   changeTabItem: (idx: number) => void;
   handleAddTab: (item: TabItemType) => void;
+  handleDelTab: (idx: number) => void;
+  handleIsShowAll: () => void;
 }
 
 const useTabStore = create<State & Action>((set) => ({
@@ -19,14 +22,17 @@ const useTabStore = create<State & Action>((set) => ({
     {
       lable: "all",
       isSelected: false,
+      isShow: true,
     },
     {
       lable: "account",
       isSelected: true,
+      isShow: true,
     },
     {
       lable: "account2",
       isSelected: false,
+      isShow: true,
     },
   ],
   changeTabItem: (idx: number) => {
@@ -50,6 +56,12 @@ const useTabStore = create<State & Action>((set) => ({
     return set((state) => {
       state.tab.splice(idx, 1);
       return { tab: [...state.tab] };
+    });
+  },
+  handleIsShowAll: () => {
+    return set((state) => {
+      state.tab[0].isShow = !state.tab[0].isShow;
+      return { tab: state.tab };
     });
   },
 }));

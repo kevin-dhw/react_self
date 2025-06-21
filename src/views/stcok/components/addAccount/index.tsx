@@ -3,7 +3,7 @@ import useTabStore from "../../store/useTabStore";
 import HeaderBack from "../headerBack";
 
 export interface AccountAddRef {
-  open: () => void;
+  open: (mode: "add" | "edit") => void;
 }
 export interface AccountAddProps {}
 
@@ -15,9 +15,20 @@ const InnerAccountAdd: React.ForwardRefRenderFunction<
   const { handleAddTab } = useTabStore();
   const [isShow, setIsShow] = useState(false);
   const [inputVal, setInputVal] = useState("");
+  const [mode, setMode] = useState("add");
+  const [specificWords, setSpecificWords] = useState({
+    title: "add account",
+    subTitle: "add new Account",
+  });
 
-  const open = () => {
-    console.log("1");
+  const open = (mode: "add" | "edit") => {
+    setMode(mode);
+    if (mode === "edit") {
+      setSpecificWords({
+        title: "edit account",
+        subTitle: "Edit Account",
+      });
+    }
     setIsShow(true);
   };
   const changeInpurVal = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +38,15 @@ const InnerAccountAdd: React.ForwardRefRenderFunction<
     if (!inputVal) {
       return;
     }
-    handleAddTab({
-      lable: inputVal,
-      isSelected: false,
-    });
+    if (mode === "add") {
+      handleAddTab({
+        lable: inputVal,
+        isSelected: false,
+        isShow: true,
+      });
+    } else {
+      console.log("edit");
+    }
     setTimeout(() => {
       setIsShow(false);
     }, 200);
@@ -44,12 +60,12 @@ const InnerAccountAdd: React.ForwardRefRenderFunction<
       <div className=" fixed top-0 bottom-0 left-0 right-0 bg-white">
         <div className=" mx-[14px]">
           <HeaderBack
-            title={"add account"}
+            title={specificWords.title}
             handleBack={() => {
               setIsShow(false);
             }}
           ></HeaderBack>
-          <div className=" mt-[30px]">add new Account</div>
+          <div className=" mt-[30px]">{specificWords.subTitle}</div>
           <div className=" mt-[20px]">
             <input
               onChange={(e) => changeInpurVal(e)}

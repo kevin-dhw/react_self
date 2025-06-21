@@ -9,7 +9,7 @@ const Stock: React.FC = () => {
   const manageAccuntRef = useRef<ManageAccountRef>(null);
 
   const handleAdd = () => {
-    accountAddRef.current?.open();
+    accountAddRef.current?.open("add");
   };
   const handleManage = () => {
     console.log("manage");

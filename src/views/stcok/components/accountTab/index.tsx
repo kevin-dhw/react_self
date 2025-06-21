@@ -18,18 +18,20 @@ const AccountTab: React.FC<AccountTabProps> = (props) => {
     <div className=" pt-[12px] px-[10px] flex justify-between">
       <div className=" flex">
         {tab.map((item, index) => {
-          return (
-            <div
-              onClick={() => clickItem(index)}
-              key={index}
-              className={classNames(
-                " pr-[16px] text-gray-500 ",
-                item.isSelected && " text-black"
-              )}
-            >
-              {item.lable}
-            </div>
-          );
+          if (item.isShow) {
+            return (
+              <div
+                onClick={() => clickItem(index)}
+                key={index}
+                className={classNames(
+                  " pr-[16px] text-gray-500 ",
+                  item.isSelected && " text-black"
+                )}
+              >
+                {item.lable}
+              </div>
+            );
+          }
         })}
         <div>
           <div onClick={() => handleAdd()} className=" relative">
