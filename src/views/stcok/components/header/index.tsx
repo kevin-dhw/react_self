@@ -1,7 +1,7 @@
 import React from "react";
 import HouseImg from "../../img/house.png";
 
-const Stock: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <div className=" flex justify-between items-center px-[10px] pt-[10px] ">
       <div>
@@ -15,4 +15,4 @@ const Stock: React.FC = () => {
   );
 };
 
-export default Stock;
+export default Header;
