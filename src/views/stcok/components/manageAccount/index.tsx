@@ -16,8 +16,8 @@ const InnerManageAccount: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   console.log(props);
   const [isShow, setIsShow] = useState(false);
-  const [curIdx, setCurIdx] = useState(0);
-  const { tab, handleDelTab, handleIsShowAll } = useTabStore();
+  const { tab, handleDelTab, handleIsShowAll, curIdx, setCurIdx } =
+    useTabStore();
   const delComfirmRef = useRef<DelComfirmRef>(null);
   const editAccountRef = useRef<AccountAddRef>(null);
 
@@ -25,7 +25,6 @@ const InnerManageAccount: React.ForwardRefRenderFunction<
     setIsShow(true);
   };
   const handleDelTabItem = () => {
-    // console.log("handleDelTabItem", curIdx);
     delComfirmRef.current?.close();
     handleDelTab(curIdx);
   };

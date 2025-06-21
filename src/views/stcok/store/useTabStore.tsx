@@ -8,6 +8,7 @@ export interface TabItemType {
 
 export interface State {
   tab: TabItemType[];
+  curIdx: number;
 }
 
 export interface Action {
@@ -15,6 +16,7 @@ export interface Action {
   handleAddTab: (item: TabItemType) => void;
   handleDelTab: (idx: number) => void;
   handleIsShowAll: () => void;
+  setCurIdx: (idx: number) => void;
 }
 
 const useTabStore = create<State & Action>((set) => ({
@@ -35,6 +37,7 @@ const useTabStore = create<State & Action>((set) => ({
       isShow: true,
     },
   ],
+  curIdx: 0,
   changeTabItem: (idx: number) => {
     return set((state) => {
       state.tab.forEach((item, index) => {
@@ -62,6 +65,11 @@ const useTabStore = create<State & Action>((set) => ({
     return set((state) => {
       state.tab[0].isShow = !state.tab[0].isShow;
       return { tab: state.tab };
+    });
+  },
+  setCurIdx: (idx: number) => {
+    return set(() => {
+      return { curIdx: idx };
     });
   },
 }));
