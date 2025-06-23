@@ -55,7 +55,6 @@ const useTabStore = create<State & Action>((set) => ({
           item.isSelected = false;
         }
       });
-      console.log(state.tab, "state.tab");
       return { tab: state.tab };
     });
   },
@@ -99,7 +98,6 @@ const useTabStore = create<State & Action>((set) => ({
     return set((state) => {
       const curItem = state.tab[state.curIdx];
       const downItem = state.tab[state.curIdx + 1];
-
       state.tab.splice(state.curIdx, 2, ...[downItem, curItem]);
       return { tab: state.tab };
     });
