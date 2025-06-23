@@ -12,7 +12,7 @@ const InnerAccountAdd: React.ForwardRefRenderFunction<
   AccountAddProps
 > = (props, ref) => {
   console.log(props);
-  const { handleAddTab } = useTabStore();
+  const { handleAddTab, curIdx, handleChangeTabName } = useTabStore();
   const [isShow, setIsShow] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [mode, setMode] = useState("add");
@@ -45,7 +45,8 @@ const InnerAccountAdd: React.ForwardRefRenderFunction<
         isShow: true,
       });
     } else {
-      console.log("edit");
+      console.log(curIdx, "edit");
+      handleChangeTabName(inputVal);
     }
     setTimeout(() => {
       setIsShow(false);

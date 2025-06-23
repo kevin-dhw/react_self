@@ -25,7 +25,7 @@ const AccountTab: React.FC<AccountTabProps> = (props) => {
                 key={index}
                 className={classNames(
                   " pr-[16px] text-gray-500 ",
-                  item.isSelected && " text-black"
+                  item.isSelected && " text-black font-bold"
                 )}
               >
                 {item.lable}

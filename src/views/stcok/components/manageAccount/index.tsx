@@ -1,4 +1,5 @@
 import React, { useState, useImperativeHandle, useRef } from "react";
+import classNames from "classnames";
 import HeaderBack from "../headerBack";
 import useTabStore from "../../store/useTabStore";
 import DelComfirm, { DelComfirmRef } from "../delComfirm";
@@ -16,8 +17,15 @@ const InnerManageAccount: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   console.log(props);
   const [isShow, setIsShow] = useState(false);
-  const { tab, handleDelTab, handleIsShowAll, curIdx, setCurIdx } =
-    useTabStore();
+  const {
+    tab,
+    handleDelTab,
+    handleIsShowAll,
+    curIdx,
+    setCurIdx,
+    handleUpTab,
+    handleDownTab,
+  } = useTabStore();
   const delComfirmRef = useRef<DelComfirmRef>(null);
   const editAccountRef = useRef<AccountAddRef>(null);
 
@@ -58,33 +66,70 @@ const InnerManageAccount: React.ForwardRefRenderFunction<
               <div>up</div>
               <div>down</div>
             </div>
-            <div className=" flex pt-[20px]">
-              <div className=" mr-[20px]">全部</div>
-              <Switch
-                checked={tab[0].isShow}
-                onChange={onSwitchChange}
-              ></Switch>
+            <div className="  mt-[20px] border-b">
+              <div className=" flex  pb-[20px]">
+                <div className=" pr-[20px]">全部</div>
+                <Switch
+                  checked={tab[0].isShow}
+                  onChange={onSwitchChange}
+                ></Switch>
+                <div className=" flex-1"></div>
+              </div>
             </div>
             {tab.map((item, index) => {
-              if (index != 0) {
+              if (item.lable != "all") {
                 return (
-                  <div key={index} className=" flex justify-between mt-[20px]">
+                  <div
+                    key={index}
+                    className=" flex justify-between mt-[20px] border-b pb-[20px]"
+                  >
                     <div onClick={() => handleDel(index)}>删除</div>
                     <div className=" w-[40%]">{item.lable}</div>
                     <div
                       onClick={() => {
+                        setCurIdx(index);
                         editAccountRef.current?.open("edit");
                       }}
                     >
                       修改
                     </div>
                     <div>清空</div>
-                    <div>上移</div>
-                    <div>下移</div>
+                    <div
+                      onClick={() => {
+                        setCurIdx(index);
+                        handleUpTab();
+                      }}
+                    >
+                      <span className={classNames(index == 1 && " hidden")}>
+                        上移
+                      </span>
+                    </div>
+                    <div
+                      onClick={() => {
+                        setCurIdx(index);
+                        handleDownTab();
+                      }}
+                    >
+                      <span
+                        className={classNames(
+                          index == tab.length - 1 && " hidden"
+                        )}
+                      >
+                        下移
+                      </span>
+                    </div>
                   </div>
                 );
               }
             })}
+          </div>
+          <div
+            onClick={() => {
+              editAccountRef.current?.open("add");
+            }}
+            className=" pl-[22px] pt-[20px]"
+          >
+            add account
           </div>
         </div>
         <DelComfirm
