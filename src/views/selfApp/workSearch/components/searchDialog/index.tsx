@@ -132,14 +132,14 @@ const InnerSearchDialog: ForwardRefRenderFunction<
         <div
           className={classNames(
             " fixed top-0 bottom-0 right-0 left-0",
-            " flex w-full"
+            " flex w-full transition-all ease-in-out delay-100 duration-500"
           )}
         >
           <div
             onClick={() => {
               close();
             }}
-            className=" flex-[2.5] bg-gray-300 opacity-45 "
+            className=" flex-[2.5] bg-gray-300 opacity-70 "
           ></div>
           <div className=" h-full bg-white flex-[7.5] flex flex-col">
             {/* this part is title and close icon */}

@@ -1,5 +1,6 @@
 import React from "react";
-import Stock from "../stcok";
+// import Stock from "../stcok";
+import WorkSearch from "../selfApp/workSearch";
 
 const Test: React.FC = () => {
   return (
@@ -7,7 +8,8 @@ const Test: React.FC = () => {
       {/* <StandardCard></StandardCard> */}
       {/* <AdventiseAnalysis></AdventiseAnalysis> */}
       {/* <Btns></Btns> */}
-      <Stock></Stock>
+      <WorkSearch />
+      {/* <Stock></Stock> */}
     </div>
   );
 };
