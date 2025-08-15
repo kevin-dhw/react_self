@@ -1,0 +1,15 @@
+@keyframes BottomToTop {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+        height: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        height: 100px;
+    }
+}
+.animation-top {
+    animation: BottomToTop 0.5s ease forwards;
+}

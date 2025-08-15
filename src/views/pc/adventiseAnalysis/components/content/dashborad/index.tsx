@@ -39,7 +39,13 @@ const Dashborad: React.FC = () => {
             <Button>{curDropdownWord}</Button>
           </Dropdown>
         </div>
-        <div>2344</div>
+        <div className=" border m-[10px]">
+          <div className=" flex justify-between">
+            <div>123</div>
+            <Button>显隐</Button>
+          </div>
+          <div className=" h-[200px] border border-red-400">内容</div>
+        </div>
       </div>
     </div>
   );
