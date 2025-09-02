@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const ToggleElement = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,6 +30,11 @@ const ToggleElement = () => {
         123
         <div className=" bg-red-300">456</div>
       </div>
+      <SyntaxHighlighter language="javascript" style={dark}>
+        {`function sayHello() {
+  console.log('Hello, world!');
+}`}
+      </SyntaxHighlighter>
     </div>
   );
 };
