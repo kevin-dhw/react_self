@@ -19,6 +19,7 @@ export interface Action {
   setCurIdx: (idx: number) => void;
   handleChangeTabName: (lable: string) => void;
   handleUpTab: () => void;
+  // 2
   handleDownTab: () => void;
 }
 
